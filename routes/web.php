@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(array('prefix' => 'api'), function() {
+    Route::resource('products','ProductController');
+});
+
+
+Route::any('{catchall}', function() {
+  return View::make('products.index'); 
+})->where('catchall', '.*');
